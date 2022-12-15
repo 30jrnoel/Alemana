@@ -26,7 +26,6 @@ public class LeapYearGUI extends JFrame{
     public void checkLeap() {
         try {
             int year = Integer.parseInt(input.getText());
-
             boolean leap = false;
             if (year % 4 == 0) {
                 if (year % 100 == 0) {
