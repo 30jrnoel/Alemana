@@ -30,23 +30,29 @@ public class SimpleCalcGUI extends JFrame{
 
     }
     public void compute(){
-        int firstNum = Integer.parseInt(tfNumber1.getText());
-        int secondNum = Integer.parseInt(tfNumber2.getText());
-        int result =0;
-        switch (cbOperations.getSelectedItem().toString()){
-            case "+":
-                result = firstNum + secondNum;
-                break;
-            case "-":
-                result = firstNum - secondNum;
-                break;
-            case "*":
-                result = firstNum * secondNum;
-                break;
-            case "/":
-                result = firstNum / secondNum;
-                break;
+        try{
+            int firstNum = Integer.parseInt(tfNumber1.getText());
+            int secondNum = Integer.parseInt(tfNumber2.getText());
+            int result =0;
+            switch (cbOperations.getSelectedItem().toString()){
+                case "+":
+                    result = firstNum + secondNum;
+                    break;
+                case "-":
+                    result = firstNum - secondNum;
+                    break;
+                case "*":
+                    result = firstNum * secondNum;
+                    break;
+                case "/":
+                    result = firstNum / secondNum;
+                    break;
+            }
+            lblResult.setText(result+"");
+        }catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(CalcPanel, "Please enter a value");
+        }catch (ArithmeticException e){
+            JOptionPane.showMessageDialog(CalcPanel, "Cannot Divide by 0");
         }
-        lblResult.setText(result+"");
     }
 }
