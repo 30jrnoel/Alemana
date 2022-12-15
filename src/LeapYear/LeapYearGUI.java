@@ -24,22 +24,26 @@ public class LeapYearGUI extends JFrame{
         app.setVisible(true);
     }
     public void checkLeap() {
-        int year = Integer.parseInt(input.getText());
+        try {
+            int year = Integer.parseInt(input.getText());
 
-        boolean leap = false;
-        if (year % 4 == 0) {
-            if (year % 100 == 0) {
-                if (year % 400 == 0)
+            boolean leap = false;
+            if (year % 4 == 0) {
+                if (year % 100 == 0) {
+                    if (year % 400 == 0)
+                        leap = true;
+                    else
+                        leap = false;
+                } else
                     leap = true;
-                else
-                    leap = false;
             } else
-                leap = true;
-        } else
-            leap = false;
-        if (leap)
-            JOptionPane.showMessageDialog(leapPanel, input.getText() + " is a leap year.");
-        else
-            JOptionPane.showMessageDialog(leapPanel, input.getText() + " is not a leap year.");
+                leap = false;
+            if (leap)
+                JOptionPane.showMessageDialog(leapPanel, input.getText() + " is a leap year.");
+            else
+                JOptionPane.showMessageDialog(leapPanel, input.getText() + " is not a leap year.");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(leapPanel, "Please input a valid Integer");
+        }
     }
 }
