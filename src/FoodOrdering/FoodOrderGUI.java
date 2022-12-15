@@ -47,38 +47,53 @@ public class FoodOrderGUI extends JFrame{
         appFood.setTitle("Food Ordering System");
     }
     public void order(){
-        double total= 0;
-        for(JCheckBox cb : food){
-            if(cb.isSelected()){
-                if (cPizza.equals(cb)) {
-                    total += 100;
-                }
-                if (cBurger.equals(cb)) {
-                    total += 80;
-                }
-                if (cFries.equals(cb)) {
-                    total += 65;
-                }
-                if (cSoftDrinks.equals(cb)) {
-                    total += 55;
-                }
-                if (cTea.equals(cb)) {
-                    total += 50;
-                }
-                if (cSundae.equals(cb)) {
-                    total += 40;
+        try{
+            double total= 0;
+            boolean selected = false;
+            for(JCheckBox cb : food){
+                if(cb.isSelected()){
+                    if (cPizza.equals(cb)) {
+                        total += 100;
+                        selected = true;
+                    }
+                    if (cBurger.equals(cb)) {
+                        total += 80;
+                        selected = true;
+                    }
+                    if (cFries.equals(cb)) {
+                        total += 65;
+                        selected = true;
+                    }
+                    if (cSoftDrinks.equals(cb)) {
+                        total += 55;
+                        selected = true;
+                    }
+                    if (cTea.equals(cb)) {
+                        total += 50;
+                        selected = true;
+                    }
+                    if (cSundae.equals(cb)) {
+                        total += 40;
+                        selected = true;
+                    }
                 }
             }
+            if (selected == false) {
+                throw new Exception();
+            }
+            if (rbNone.isSelected()){
+            }else if (rb5.isSelected()){
+                total*=0.95;
+            }else if (rb10.isSelected()){
+                total*=0.90;
+            }else if (rb15.isSelected()){
+                total*=0.85;
+            }
+            DecimalFormat df = new DecimalFormat("0.00");
+            JOptionPane.showMessageDialog(FoodPanel,"The total price is Php " + df.format(total));
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(FoodPanel,"Select at least one item");
+
         }
-        if (rbNone.isSelected()){
-        }else if (rb5.isSelected()){
-            total*=0.95;
-        }else if (rb10.isSelected()){
-            total*=0.90;
-        }else if (rb15.isSelected()){
-            total*=0.85;
-        }
-        DecimalFormat df = new DecimalFormat("0.00");
-        JOptionPane.showMessageDialog(FoodPanel,"The total price is Php " + df.format(total));
     }
 }
