@@ -3,16 +3,26 @@ package LeapYear;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class LeapYearGUI extends JFrame{
     private JPanel leapPanel;
-    private JTextField input;
-    private JButton checker;
+    private JTextField tfYear;
+    private JButton btnCheckYear;
     public LeapYearGUI() {
-        checker.addActionListener(new ActionListener() {
+        btnCheckYear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 checkLeap();
+            }
+        });
+        tfYear.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    checkLeap();
+                }
             }
         });
     }
@@ -26,7 +36,7 @@ public class LeapYearGUI extends JFrame{
     }
     public void checkLeap() {
         try {
-            int year = Integer.parseInt(input.getText());
+            int year = Integer.parseInt(tfYear.getText());
             boolean leap = false;
             if (year % 4 == 0) {
                 if (year % 100 == 0) {
@@ -39,9 +49,9 @@ public class LeapYearGUI extends JFrame{
             } else
                 leap = false;
             if (leap)
-                JOptionPane.showMessageDialog(leapPanel, input.getText() + " is a leap year.");
+                JOptionPane.showMessageDialog(leapPanel, tfYear.getText() + " is a leap year.");
             else
-                JOptionPane.showMessageDialog(leapPanel, input.getText() + " is not a leap year.");
+                JOptionPane.showMessageDialog(leapPanel, tfYear.getText() + " is not a leap year.");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(leapPanel, "Please input a valid Integer");
         }
