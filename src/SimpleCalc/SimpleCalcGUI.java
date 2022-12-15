@@ -50,7 +50,7 @@ public class SimpleCalcGUI extends JFrame{
             }
             lblResult.setText(result+"");
         }catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(CalcPanel, "Please enter a value");
+            JOptionPane.showMessageDialog(CalcPanel, "Error please try again");
         }catch (ArithmeticException e){
             JOptionPane.showMessageDialog(CalcPanel, "Cannot Divide by 0");
         }
